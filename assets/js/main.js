@@ -78,59 +78,55 @@ let swiperTestimonial = new Swiper(".testimonial__container", {
   },
 });
 /*=============== EMAIL JS ===============*/
-const contactForm = document.getElementById("contact-form"),
-  contactName = document.getElementById("contact-name"),
-  contactEmail = document.getElementById("contact-email"),
-  contactProject = document.getElementById("contact-project"),
-  contactMessage = document.getElementById("contact-message");
+document.addEventListener("DOMContentLoaded", () => {
+  const contactForm = document.getElementById("contact-form"),
+    contactName = document.getElementById("contact-name"),
+    contactEmail = document.getElementById("contact-email"),
+    contactProject = document.getElementById("contact-project"),
+    contactMessage = document.getElementById("contact-message");
 
-const sendEmail = (e) => {
-  e.preventDefault();
+  emailjs.init("Jv4ZWm5CNAkUSFpEA"); // Initialize EmailJS
 
-  //Check if field has a value
-  if (
-    contactName.value === "" ||
-    contactEmail.value === "" ||
-    contactProject.value === ""
-  ) {
-    // Add and remove color
-    contactMessage.classList.remove("color-blue");
-    contactMessage.classList.add("color-red");
+  const sendEmail = (e) => {
+    e.preventDefault();
 
-    //Show message
-    contactMessage.textContent = "Write all the input fields !";
-  } else {
-    //serviceID - templateId -#form -pyblickey
+    if (
+      contactName.value === "" ||
+      contactEmail.value === "" ||
+      contactProject.value === ""
+    ) {
+      contactMessage.classList.remove("color-blue");
+      contactMessage.classList.add("color-red");
+      contactMessage.textContent = "Write all the input fields!";
+      return;
+    }
+
     emailjs
       .sendForm(
         "service_boygds7",
         "template_500sthk",
-        "#contact-form",
-        "Jv4ZWm5CNAkUSFpEA"
+        "#contact-form"
       )
       .then(
         () => {
-          //Shoe message and add color
+          contactMessage.classList.remove("color-red");
           contactMessage.classList.add("color-blue");
           contactMessage.textContent = "Message sent ✅";
 
-          //Remove message after 5 sec
           setTimeout(() => {
             contactMessage.textContent = "";
           }, 3000);
+
+          contactForm.reset(); // Clears all fields
         },
         (error) => {
-          alert("OOPS! SOMETHING HAS FAILED...", error);
+          alert("OOPS! SOMETHING HAS FAILED... " + JSON.stringify(error));
         }
       );
+  };
 
-    //To clear the input field
-    contactName.value = "";
-    contactEmail.value = "";
-    contactProject.value = "";
-  }
-};
-contactForm.addEventListener("submit", sendEmail);
+  contactForm.addEventListener("submit", sendEmail);
+});
 
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
 const sections = document.querySelectorAll("section[id]");
@@ -225,6 +221,21 @@ sr.reveal(".skills__content:nth-child(1), .contact__content:nth-child(1)", {
 });
 sr.reveal(".skills__content:nth-child(2), .contact__content:nth-child(2)", {
   origin: "right",
+});
+sr.reveal(".skills__content:nth-child(3), .contact__content:nth-child(3)", {
+  origin: "left",
+});
+sr.reveal(".skills__content:nth-child(4), .contact__content:nth-child(4)", {
+  origin: "right",
+});
+sr.reveal(".skills__content:nth-child(5), .contact__content:nth-child(5)", {
+  origin: "left",
+});
+sr.reveal(".skills__content:nth-child(6), .contact__content:nth-child(6)", {
+  origin: "right",
+});
+sr.reveal(".skills__content:nth-child(7), .contact__content:nth-child(7)", {
+  origin: "left",
 });
 sr.reveal("#education, .services__card", { interval: 100 });
 
