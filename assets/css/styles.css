@@ -1111,7 +1111,7 @@ body.dark-theme {
 
   .projects__img {
     width: 200px;
-    justify-self: center;
+    justify-self: space-between;
   }
 
 }
@@ -1516,5 +1516,78 @@ body.dark-theme {
   }
   100% {
     height: 396px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  /* General Fixes */
+  .container {
+    padding-inline: 1rem;
+  }
+/* ========== HOME SECTION ========== */
+  .home__info {
+    grid-template-rows: repeat(3, 130px);
+    row-gap: 3rem;
+    margin-top: 4rem;
+  }
+
+  /* ========== SERVICES SECTION ========== */
+  .services__container {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 1.5rem;
+  }
+
+  .services__card {
+    width: 90%;
+    height: auto;
+    padding: 2rem 1.5rem;
+    border-radius: 2rem;
+  }
+
+  .services__border {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    border-radius: 2rem;
+  }
+
+  /* ========== PROJECTS SECTION ========== */
+  .projects__container {
+    width: 100%;
+    padding-inline: 1.5rem;
+    overflow: hidden;
+  }
+
+  .projects__content {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .projects__img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 1.5rem;
+  }
+
+  .projects__button {
+    font-size: 0.875rem;
+    padding: 2rem 2.5rem;
+  }
+
+  .projects__container .swiper-slide {
+    width: 90%;
+    margin: auto;
+  }
+
+
+  /* Optional: Adjust font sizes for better mobile legibility */
+  .section__title {
+    font-size: 1.5rem;
+  }
+
+  .section__subtitle {
+    font-size: 1rem;
   }
 }
